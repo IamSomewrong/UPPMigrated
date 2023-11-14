@@ -21,6 +21,7 @@ namespace UPPMigrated
         public Form1()
         {
             InitializeComponent();
+
             pm = new PlotModel();
 
             var startDate = DateTime.Now.AddDays(-10);
@@ -32,7 +33,7 @@ namespace UPPMigrated
             pm.Axes.Add(new DateTimeAxis { Position = AxisPosition.Bottom, Minimum = minValue, Maximum = maxValue, StringFormat = "M/d" });
             pm.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Minimum = 0, Maximum = 10 });
 
-            var series = new CandleStickSeries
+            series = new CandleStickSeries
             {
                 Color = OxyColors.Black,
                 IncreasingColor = OxyColors.DarkGreen,
