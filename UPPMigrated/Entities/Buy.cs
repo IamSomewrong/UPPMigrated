@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UPPMigrated.Entities
 {
-    internal class Buy
+    public class Buy
     {
         public int Id { get; set; }
         public int UserId { get; set; }
