@@ -10,14 +10,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using OxyPlot.Axes;
+using UPPMigrated.Entities;
 
 namespace UPPMigrated
 {
     public partial class Form1 : Form
     {
+        User? user;
         PlotModel pm;
         CandleStickSeries series;
-        List<HighLowItem> items = new List<HighLowItem> { new HighLowItem(DateTimeAxis.ToDouble(new DateTime(2023, 11, 9)), 0, 5, 1, 4)};
+        List<HighLowItem> items = new List<HighLowItem> { new HighLowItem(DateTimeAxis.ToDouble(new DateTime(2023, 11, 9)), 0, 5, 1, 4) };
         public Form1()
         {
             InitializeComponent();
@@ -45,7 +47,7 @@ namespace UPPMigrated
                 DataFieldClose = "C",
                 TrackerFormatString = "High: {3:0.00}\nLow: {4:0.00}\nOpen: {5:0.00}\nClose: {6:0.00}\nAsOf:{2:yyyy-MM-dd}",
                 ItemsSource = items
-                };
+            };
 
             pm.Series.Add(series);
             plotView1.Model = pm;
@@ -53,23 +55,53 @@ namespace UPPMigrated
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            if(user != null)
+            {
+                FormAddBalance formAddBalance = new FormAddBalance();
+                formAddBalance.ShowDialog();
+                using(ApplicationContext db = new ApplicationContext())
+                {
+                    user.Balance += formAddBalance.summ;
+                    db.Users.Update(user);
+                    db.SaveChanges();
+                    label1.Text = $"{user.Balance} у.е.";
+                }
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             FormPortfolio formPortfolio = new FormPortfolio();
-            this.Hide();
+            Hide();
             formPortfolio.ShowDialog();
-            this.Show();
+            Show();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             FormShares formShares = new FormShares();
-            this.Hide();
+            Hide();
             formShares.ShowDialog();
-            this.Show();
+            Show();
+        }
+
+        private void создатьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormCreateAccount createAccount = new FormCreateAccount();
+            createAccount.ShowDialog();
+        }
+
+        private void загрузитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormOpenAccount openAccount = new FormOpenAccount();
+            openAccount.ShowDialog();
+            user = openAccount.user;
+            if(user != null) 
+            {
+                label5.Text = user.Name;
+                label1.Text = $"{user.Balance} у.е.";
+            }
+            
         }
     }
 }

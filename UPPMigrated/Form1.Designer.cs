@@ -37,13 +37,14 @@
             button2 = new Button();
             label1 = new Label();
             menuStrip1 = new MenuStrip();
-            файлToolStripMenuItem = new ToolStripMenuItem();
+            сменитьАккаунтToolStripMenuItem = new ToolStripMenuItem();
+            создатьToolStripMenuItem = new ToolStripMenuItem();
             загрузитьToolStripMenuItem = new ToolStripMenuItem();
-            сохранитьToolStripMenuItem = new ToolStripMenuItem();
-            сохранитьКакToolStripMenuItem = new ToolStripMenuItem();
             button3 = new Button();
             groupBox3 = new GroupBox();
             plotView1 = new OxyPlot.WindowsForms.PlotView();
+            label4 = new Label();
+            label5 = new Label();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             menuStrip1.SuspendLayout();
@@ -151,7 +152,7 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { файлToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { сменитьАккаунтToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(7, 2, 0, 2);
@@ -159,30 +160,26 @@
             menuStrip1.TabIndex = 8;
             menuStrip1.Text = "menuStrip1";
             // 
-            // файлToolStripMenuItem
+            // сменитьАккаунтToolStripMenuItem
             // 
-            файлToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { загрузитьToolStripMenuItem, сохранитьToolStripMenuItem, сохранитьКакToolStripMenuItem });
-            файлToolStripMenuItem.Name = "файлToolStripMenuItem";
-            файлToolStripMenuItem.Size = new Size(48, 20);
-            файлToolStripMenuItem.Text = "Файл";
+            сменитьАккаунтToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { создатьToolStripMenuItem, загрузитьToolStripMenuItem });
+            сменитьАккаунтToolStripMenuItem.Name = "сменитьАккаунтToolStripMenuItem";
+            сменитьАккаунтToolStripMenuItem.Size = new Size(112, 20);
+            сменитьАккаунтToolStripMenuItem.Text = "Сменить аккаунт";
+            // 
+            // создатьToolStripMenuItem
+            // 
+            создатьToolStripMenuItem.Name = "создатьToolStripMenuItem";
+            создатьToolStripMenuItem.Size = new Size(180, 22);
+            создатьToolStripMenuItem.Text = "Создать...";
+            создатьToolStripMenuItem.Click += создатьToolStripMenuItem_Click;
             // 
             // загрузитьToolStripMenuItem
             // 
             загрузитьToolStripMenuItem.Name = "загрузитьToolStripMenuItem";
-            загрузитьToolStripMenuItem.Size = new Size(163, 22);
-            загрузитьToolStripMenuItem.Text = "Загрузить";
-            // 
-            // сохранитьToolStripMenuItem
-            // 
-            сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            сохранитьToolStripMenuItem.Size = new Size(163, 22);
-            сохранитьToolStripMenuItem.Text = "Сохранить";
-            // 
-            // сохранитьКакToolStripMenuItem
-            // 
-            сохранитьКакToolStripMenuItem.Name = "сохранитьКакToolStripMenuItem";
-            сохранитьКакToolStripMenuItem.Size = new Size(163, 22);
-            сохранитьКакToolStripMenuItem.Text = "Сохранить как...";
+            загрузитьToolStripMenuItem.Size = new Size(180, 22);
+            загрузитьToolStripMenuItem.Text = "Загрузить...";
+            загрузитьToolStripMenuItem.Click += загрузитьToolStripMenuItem_Click;
             // 
             // button3
             // 
@@ -219,12 +216,32 @@
             plotView1.ZoomRectangleCursor = Cursors.SizeNWSE;
             plotView1.ZoomVerticalCursor = Cursors.SizeNS;
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(14, 27);
+            label4.Name = "label4";
+            label4.Size = new Size(86, 15);
+            label4.TabIndex = 13;
+            label4.Text = "Здравствуйте, ";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(96, 27);
+            label5.Name = "label5";
+            label5.Size = new Size(38, 15);
+            label5.TabIndex = 14;
+            label5.Text = "label5";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(872, 480);
+            Controls.Add(label5);
+            Controls.Add(label4);
             Controls.Add(plotView1);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
@@ -254,15 +271,16 @@
         private GroupBox groupBox2;
         private Label label1;
         private MenuStrip menuStrip1;
-        private ToolStripMenuItem файлToolStripMenuItem;
-        private ToolStripMenuItem загрузитьToolStripMenuItem;
-        private ToolStripMenuItem сохранитьToolStripMenuItem;
-        private ToolStripMenuItem сохранитьКакToolStripMenuItem;
         private Button button1;
         private Button button2;
         private Button button3;
         private GroupBox groupBox3;
         private OxyPlot.WindowsForms.PlotView plotView1;
+        private ToolStripMenuItem сменитьАккаунтToolStripMenuItem;
+        private ToolStripMenuItem создатьToolStripMenuItem;
+        private ToolStripMenuItem загрузитьToolStripMenuItem;
+        private Label label4;
+        private Label label5;
     }
 }
 
