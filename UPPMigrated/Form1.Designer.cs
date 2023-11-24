@@ -170,14 +170,14 @@
             // создатьToolStripMenuItem
             // 
             создатьToolStripMenuItem.Name = "создатьToolStripMenuItem";
-            создатьToolStripMenuItem.Size = new Size(180, 22);
+            создатьToolStripMenuItem.Size = new Size(137, 22);
             создатьToolStripMenuItem.Text = "Создать...";
             создатьToolStripMenuItem.Click += создатьToolStripMenuItem_Click;
             // 
             // загрузитьToolStripMenuItem
             // 
             загрузитьToolStripMenuItem.Name = "загрузитьToolStripMenuItem";
-            загрузитьToolStripMenuItem.Size = new Size(180, 22);
+            загрузитьToolStripMenuItem.Size = new Size(137, 22);
             загрузитьToolStripMenuItem.Text = "Загрузить...";
             загрузитьToolStripMenuItem.Click += загрузитьToolStripMenuItem_Click;
             // 
@@ -252,6 +252,7 @@
             Margin = new Padding(4, 3, 4, 3);
             Name = "Form1";
             Text = "Брокерский виртуоз";
+            Load += Form1_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
