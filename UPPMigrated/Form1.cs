@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using OxyPlot.Axes;
 using UPPMigrated.Entities;
+using YahooFinanceApi;
 
 namespace UPPMigrated
 {
@@ -19,47 +20,30 @@ namespace UPPMigrated
         User? user;
         PlotModel pm;
         CandleStickSeries series;
-        List<HighLowItem> items = new List<HighLowItem> { new HighLowItem(DateTimeAxis.ToDouble(new DateTime(2023, 11, 9)), 0, 5, 1, 4) };
+        List<HighLowItem> items = new List<HighLowItem>();
+        DateTime startDate = DateTime.Now.AddDays(-10);
+        DateTime endDate = DateTime.Now;
         public Form1()
         {
             InitializeComponent();
 
             pm = new PlotModel();
 
-            var startDate = DateTime.Now.AddDays(-10);
-            var endDate = DateTime.Now;
-
             var minValue = DateTimeAxis.ToDouble(startDate);
             var maxValue = DateTimeAxis.ToDouble(endDate);
 
             pm.Axes.Add(new DateTimeAxis { Position = AxisPosition.Bottom, Minimum = minValue, Maximum = maxValue, StringFormat = "M/d" });
             pm.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Minimum = 0, Maximum = 10 });
-
-            series = new CandleStickSeries
-            {
-                Color = OxyColors.Black,
-                IncreasingColor = OxyColors.DarkGreen,
-                DecreasingColor = OxyColors.Red,
-                DataFieldX = "QTime",
-                DataFieldHigh = "H",
-                DataFieldLow = "L",
-                DataFieldOpen = "O",
-                DataFieldClose = "C",
-                TrackerFormatString = "High: {3:0.00}\nLow: {4:0.00}\nOpen: {5:0.00}\nClose: {6:0.00}\nAsOf:{2:yyyy-MM-dd}",
-                ItemsSource = items
-            };
-
-            pm.Series.Add(series);
             plotView1.Model = pm;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if(user != null)
+            if (user != null)
             {
                 FormAddBalance formAddBalance = new FormAddBalance();
                 formAddBalance.ShowDialog();
-                using(ApplicationContext db = new ApplicationContext())
+                using (ApplicationContext db = new ApplicationContext())
                 {
                     user.Balance += formAddBalance.summ;
                     db.Users.Update(user);
@@ -96,12 +80,43 @@ namespace UPPMigrated
             FormOpenAccount openAccount = new FormOpenAccount();
             openAccount.ShowDialog();
             user = openAccount.user;
-            if(user != null) 
+            if (user != null)
             {
                 label5.Text = user.Name;
                 label1.Text = $"{user.Balance} у.е.";
             }
-            
+
+        }
+
+        private async void Form1_Load(object sender, EventArgs e)
+        {
+            var history = await Yahoo.GetHistoricalAsync("AAPL", startDate, endDate, Period.Daily);
+            items.Clear();
+            foreach (var candle in history)
+            {
+                items.Add(new HighLowItem(DateTimeAxis.ToDouble(candle.DateTime), (double)candle.High, (double)candle.Low, (double)candle.Open, (double)candle.Close));
+            }
+
+            series = new CandleStickSeries
+            {
+                Color = OxyColors.Black,
+                IncreasingColor = OxyColors.DarkGreen,
+                DecreasingColor = OxyColors.Red,
+                DataFieldX = "QTime",
+                DataFieldHigh = "H",
+                DataFieldLow = "L",
+                DataFieldOpen = "O",
+                DataFieldClose = "C",
+                TrackerFormatString = "High: {3:0.00}\nLow: {4:0.00}\nOpen: {5:0.00}\nClose: {6:0.00}\nAsOf:{2:yyyy-MM-dd}",
+                ItemsSource = items
+            };
+
+
+            pm.Series.Clear();
+            pm.Series.Add(series);
+            plotView1.Model = pm;
+            plotView1.Update();
+            plotView1.Refresh();
         }
     }
 }
