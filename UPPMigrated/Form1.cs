@@ -18,25 +18,13 @@ namespace UPPMigrated
     public partial class Form1 : Form
     {
         User? user;
-        PlotModel pm;
-        CandleStickSeries series;
-        List<HighLowItem> items = new List<HighLowItem>();
-        DateTime startDate = DateTime.Now.AddMonths(-12);
+        DateTime startDate = DateTime.Now.AddMonths(-1);
         DateTime endDate = DateTime.Now;
         public Form1(User? user)
         {
             InitializeComponent();
-
-            pm = new PlotModel();
-
             this.user = user;
             PrintUser();
-
-            var minValue = DateTimeAxis.ToDouble(startDate);
-            var maxValue = DateTimeAxis.ToDouble(endDate);
-
-            pm.Axes.Add(new DateTimeAxis { Position = AxisPosition.Bottom, Minimum = minValue, Maximum = maxValue, StringFormat = "M/d" });
-            pm.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Minimum = 180, Maximum = 200 });
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -92,42 +80,45 @@ namespace UPPMigrated
         private void PrintUser()
         {
             label5.Text = user.Name;
-            label1.Text = $"{Math.Round(user.Balance,2)} у.е.";
+            label1.Text = $"{Math.Round(user.Balance, 2)} у.е.";
         }
 
-        private async void Form1_Load(object sender, EventArgs e)
+        private async void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var history = await Yahoo.GetHistoricalAsync("AAPL", startDate, endDate, Period.Daily);
-            items.Clear();
-            foreach (var candle in history)
-            {
-                items.Add(new HighLowItem(DateTimeAxis.ToDouble(candle.DateTime), (double)candle.High, (double)candle.Low, (double)candle.Open, (double)candle.Close));
-            }
+            var history = await Yahoo.GetHistoricalAsync(listBox1.SelectedItem.ToString(), startDate, endDate, Period.Daily);
 
-            series = new CandleStickSeries
-            {
-                Color = OxyColors.Black,
-                IncreasingColor = OxyColors.DarkGreen,
-                DecreasingColor = OxyColors.Red,
-                DataFieldX = "QTime",
-                DataFieldHigh = "H",
-                DataFieldLow = "L",
-                DataFieldOpen = "O",
-                DataFieldClose = "C",
-                TrackerFormatString = "High: {3:0.00}\nLow: {4:0.00}\nOpen: {5:0.00}\nClose: {6:0.00}\nAsOf:{2:yyyy-MM-dd}",
-                ItemsSource = items
-            };
-
-
-            pm.Series.Clear();
-            pm.Series.Add(series);
-            plotView1.Model = pm;
+            plotView1.Model = Plotter.GetCandlesPlotModel(history);
             plotView1.Refresh();
         }
 
-        private void сменитьАккаунтToolStripMenuItem_Click(object sender, EventArgs e)
+        private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
         {
+            switch (domainUpDown1.SelectedItem.ToString())
+            {
+                case "День":
+                    startDate = DateTime.Now.AddDays(-1);
+                    break;
+                case "Неделя":
+                    startDate = DateTime.Now.AddDays(-7);
+                    break;
+                case "Месяц":
+                    startDate = DateTime.Now.AddMonths(-1);
+                    break;
+                case "3 Месяца":
+                    startDate = DateTime.Now.AddMonths(-3);
+                    break;
+                case "6 Месяцев":
+                    startDate = DateTime.Now.AddMonths(-6);
+                    break;
+                case "Год":
+                    startDate = DateTime.Now.AddYears(-1);
+                    break;
+                case "За все время":
+                    startDate = DateTime.Now.AddYears(-10);
+                    break;
+            }
 
+            listBox1_SelectedIndexChanged(sender, e);
         }
     }
 }
