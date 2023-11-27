@@ -12,7 +12,7 @@ namespace UPPMigrated
 {
     public partial class FormAddBalance : Form
     {
-        public int summ = 0;
+        public double summ = 0;
 
         public FormAddBalance()
         {
@@ -23,7 +23,7 @@ namespace UPPMigrated
         {
             try
             {
-                summ = Convert.ToInt32(textBox1.Text);
+                summ = Convert.ToDouble(textBox1.Text);
                 Close();
             }
             catch { MessageBox.Show("Введено неккоректное число.", "Ошибка"); }
