@@ -33,8 +33,7 @@ namespace UPPMigrated
             var maxValue = DateTimeAxis.ToDouble(endDate);
 
             pm.Axes.Add(new DateTimeAxis { Position = AxisPosition.Bottom, Minimum = minValue, Maximum = maxValue, StringFormat = "M/d" });
-            pm.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Minimum = 0, Maximum = 10 });
-            plotView1.Model = pm;
+            pm.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Minimum = 100, Maximum = 200 });
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -110,7 +109,6 @@ namespace UPPMigrated
                 TrackerFormatString = "High: {3:0.00}\nLow: {4:0.00}\nOpen: {5:0.00}\nClose: {6:0.00}\nAsOf:{2:yyyy-MM-dd}",
                 ItemsSource = items
             };
-
 
             pm.Series.Clear();
             pm.Series.Add(series);
