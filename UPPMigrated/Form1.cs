@@ -30,8 +30,7 @@ namespace UPPMigrated
             pm = new PlotModel();
 
             this.user = user;
-            label5.Text = user.Name;
-            label1.Text = $"{user.Balance} у.е.";
+            PrintUser();
 
             var minValue = DateTimeAxis.ToDouble(startDate);
             var maxValue = DateTimeAxis.ToDouble(endDate);
@@ -85,10 +84,15 @@ namespace UPPMigrated
             user = openAccount.user;
             if (user != null)
             {
-                label5.Text = user.Name;
-                label1.Text = $"{user.Balance} у.е.";
+                PrintUser();
             }
 
+        }
+
+        private void PrintUser()
+        {
+            label5.Text = user.Name;
+            label1.Text = $"{Math.Round(user.Balance,2)} у.е.";
         }
 
         private async void Form1_Load(object sender, EventArgs e)
