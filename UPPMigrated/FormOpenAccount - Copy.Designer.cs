@@ -1,6 +1,6 @@
 ﻿namespace UPPMigrated
 {
-    partial class FormOpenAccount
+    partial class FormLogin
     {
         /// <summary>
         /// Required designer variable.
@@ -31,58 +31,42 @@
             textBox1 = new TextBox();
             label1 = new Label();
             button1 = new Button();
-            button2 = new Button();
             SuspendLayout();
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(21, 36);
-            textBox1.Margin = new Padding(3, 4, 3, 4);
+            textBox1.Location = new Point(18, 27);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(410, 27);
+            textBox1.Size = new Size(359, 23);
             textBox1.TabIndex = 0;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(21, 12);
+            label1.Location = new Point(18, 9);
             label1.Name = "label1";
-            label1.Size = new Size(142, 20);
+            label1.Size = new Size(112, 15);
             label1.TabIndex = 1;
             label1.Text = "Имя пользователя:";
             // 
             // button1
             // 
-            button1.Location = new Point(21, 71);
-            button1.Margin = new Padding(3, 4, 3, 4);
+            button1.Location = new Point(127, 56);
             button1.Name = "button1";
-            button1.Size = new Size(154, 36);
+            button1.Size = new Size(135, 27);
             button1.TabIndex = 2;
             button1.Text = "Загрузить";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // button2
-            // 
-            button2.Location = new Point(273, 71);
-            button2.Margin = new Padding(3, 4, 3, 4);
-            button2.Name = "button2";
-            button2.Size = new Size(154, 36);
-            button2.TabIndex = 3;
-            button2.Text = "Создать";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
-            // 
             // FormOpenAccount
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(439, 120);
-            Controls.Add(button2);
+            ClientSize = new Size(384, 90);
             Controls.Add(button1);
             Controls.Add(label1);
             Controls.Add(textBox1);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "FormOpenAccount";
             Text = "FormOpenAccount";
             ResumeLayout(false);
@@ -94,6 +78,5 @@
         private TextBox textBox1;
         private Label label1;
         private Button button1;
-        private Button button2;
     }
 }

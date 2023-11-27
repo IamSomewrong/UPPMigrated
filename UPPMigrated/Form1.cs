@@ -21,19 +21,23 @@ namespace UPPMigrated
         PlotModel pm;
         CandleStickSeries series;
         List<HighLowItem> items = new List<HighLowItem>();
-        DateTime startDate = DateTime.Now.AddDays(-10);
+        DateTime startDate = DateTime.Now.AddMonths(-12);
         DateTime endDate = DateTime.Now;
-        public Form1()
+        public Form1(User? user)
         {
             InitializeComponent();
 
             pm = new PlotModel();
 
+            this.user = user;
+            label5.Text = user.Name;
+            label1.Text = $"{user.Balance} у.е.";
+
             var minValue = DateTimeAxis.ToDouble(startDate);
             var maxValue = DateTimeAxis.ToDouble(endDate);
 
             pm.Axes.Add(new DateTimeAxis { Position = AxisPosition.Bottom, Minimum = minValue, Maximum = maxValue, StringFormat = "M/d" });
-            pm.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Minimum = 0, Maximum = 10 });
+            pm.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Minimum = 180, Maximum = 200 });
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -114,8 +118,12 @@ namespace UPPMigrated
             pm.Series.Clear();
             pm.Series.Add(series);
             plotView1.Model = pm;
-            plotView1.Update();
             plotView1.Refresh();
+        }
+
+        private void сменитьАккаунтToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

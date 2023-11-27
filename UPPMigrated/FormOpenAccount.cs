@@ -22,17 +22,42 @@ namespace UPPMigrated
 
         private void button1_Click(object sender, EventArgs e)
         {
-            using(ApplicationContext db =  new ApplicationContext())
+            using (ApplicationContext db = new ApplicationContext())
             {
                 List<User> users = db.Users.ToList();
                 if (users.Exists(x => x.Name == textBox1.Text))
                 {
                     user = users.Find(x => x.Name == textBox1.Text);
-                    Close();
+                    FormOpen(user);
                 }
                 else
                     MessageBox.Show("Пользователя с таким именем не существует.", "Ошибка");
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                User user = new User { Name = textBox1.Text, Balance = 0 };
+                List<User> users = db.Users.ToList();
+                if (users.Exists(x => x.Name == user.Name))
+                    MessageBox.Show("Пользователь с таким именем уже существует.", "Ошибка");
+                else
+                {
+                    db.Users.Add(user);
+                    db.SaveChanges();
+                    MessageBox.Show("Пользователь успешно создан.", "Успех");
+                }
+            }
+        }
+
+        private void FormOpen(User? user)
+        {
+            Form1 form = new Form1(user);
+            Hide();
+            form.ShowDialog();
+            Close();
         }
     }
 }

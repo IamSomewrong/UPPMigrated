@@ -10,7 +10,7 @@ namespace UPPMigrated.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; } = "user";    
-        public int Balance { get; set; }
+        public double Balance { get; set; }
         public List<Buy> Buys { get; set; } = new();
         public List<Sell> Sells { get; set; } = new();
     }
