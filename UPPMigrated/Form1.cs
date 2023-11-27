@@ -34,7 +34,6 @@ namespace UPPMigrated
 
             pm.Axes.Add(new DateTimeAxis { Position = AxisPosition.Bottom, Minimum = minValue, Maximum = maxValue, StringFormat = "M/d" });
             pm.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Minimum = 0, Maximum = 10 });
-            plotView1.Model = pm;
         }
 
         private void button2_Click(object sender, EventArgs e)
