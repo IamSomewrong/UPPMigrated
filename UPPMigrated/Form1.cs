@@ -87,6 +87,8 @@ namespace UPPMigrated
         {
             var history = await Yahoo.GetHistoricalAsync(listBox1.SelectedItem.ToString(), startDate, endDate, Period.Daily);
 
+            label2.Text = listBox1.SelectedItem.ToString();
+
             plotView1.Model = Plotter.GetCandlesPlotModel(history);
             plotView1.Refresh();
         }
