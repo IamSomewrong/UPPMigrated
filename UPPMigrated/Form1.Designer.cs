@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            button3 = new Button();
+            button1 = new Button();
+            textBox1 = new TextBox();
+            label7 = new Label();
+            label6 = new Label();
+            label3 = new Label();
             label2 = new Label();
             domainUpDown1 = new DomainUpDown();
             groupBox2 = new GroupBox();
@@ -42,12 +48,6 @@
             label5 = new Label();
             plotView1 = new OxyPlot.WindowsForms.PlotView();
             listBox1 = new ListBox();
-            label3 = new Label();
-            label6 = new Label();
-            label7 = new Label();
-            textBox1 = new TextBox();
-            button1 = new Button();
-            button3 = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             menuStrip1.SuspendLayout();
@@ -71,6 +71,62 @@
             groupBox1.TabIndex = 5;
             groupBox1.TabStop = false;
             groupBox1.Text = "Портфель";
+            // 
+            // button3
+            // 
+            button3.Location = new Point(166, 184);
+            button3.Margin = new Padding(5, 4, 5, 4);
+            button3.Name = "button3";
+            button3.Size = new Size(114, 36);
+            button3.TabIndex = 12;
+            button3.Text = "Продать";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click_1;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(10, 184);
+            button1.Margin = new Padding(5, 4, 5, 4);
+            button1.Name = "button1";
+            button1.Size = new Size(114, 36);
+            button1.TabIndex = 11;
+            button1.Text = "Купить";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_1;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(77, 153);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(125, 27);
+            textBox1.TabIndex = 4;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(221, 109);
+            label7.Name = "label7";
+            label7.Size = new Size(29, 20);
+            label7.TabIndex = 3;
+            label7.Text = "0%";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(208, 74);
+            label6.Name = "label6";
+            label6.Size = new Size(42, 20);
+            label6.TabIndex = 2;
+            label6.Text = "0 у.е.";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(32, 74);
+            label3.Name = "label3";
+            label3.Size = new Size(42, 20);
+            label3.TabIndex = 1;
+            label3.Text = "0 шт.";
             // 
             // label2
             // 
@@ -206,60 +262,6 @@
             listBox1.Size = new Size(165, 104);
             listBox1.TabIndex = 16;
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(32, 74);
-            label3.Name = "label3";
-            label3.Size = new Size(42, 20);
-            label3.TabIndex = 1;
-            label3.Text = "0 шт.";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(208, 74);
-            label6.Name = "label6";
-            label6.Size = new Size(42, 20);
-            label6.TabIndex = 2;
-            label6.Text = "0 у.е.";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(221, 109);
-            label7.Name = "label7";
-            label7.Size = new Size(29, 20);
-            label7.TabIndex = 3;
-            label7.Text = "0%";
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(77, 153);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 4;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(10, 184);
-            button1.Margin = new Padding(5, 4, 5, 4);
-            button1.Name = "button1";
-            button1.Size = new Size(114, 36);
-            button1.TabIndex = 11;
-            button1.Text = "Купить";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.Location = new Point(166, 184);
-            button3.Margin = new Padding(5, 4, 5, 4);
-            button3.Name = "button3";
-            button3.Size = new Size(114, 36);
-            button3.TabIndex = 12;
-            button3.Text = "Продать";
-            button3.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
